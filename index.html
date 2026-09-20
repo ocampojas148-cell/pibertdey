@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dabidskiiii</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #05070b;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* BLUE GLOW */
+body::before {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: rgba(0, 119, 255, 0.13);
+    filter: blur(100px);
+    top: -150px;
+    right: -150px;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: rgba(0, 119, 255, 0.08);
+    filter: blur(100px);
+    bottom: -150px;
+    left: -150px;
+    pointer-events: none;
+}
+
+.screen {
+    min-height: 100vh;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 18px;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* COMIC LINES */
+.speed-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.18;
+}
+
+.line {
+    position: absolute;
+    width: 300px;
+    height: 1px;
+    background: #238cff;
+    transform: rotate(-25deg);
+}
+
+.line:nth-child(1) { top: 18%; left: -50px; }
+.line:nth-child(2) { top: 30%; right: -80px; }
+.line:nth-child(3) { top: 65%; left: -70px; }
+.line:nth-child(4) { top: 80%; right: -50px; }
+.line:nth-child(5) { top: 45%; left: 30%; width: 180px; }
+
+/* INTRO */
+.intro {
+    text-align: center;
+    max-width: 700px;
+    z-index: 2;
+}
+
+.small-text {
+    color: #5daeff;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.intro h1 {
+    font-size: clamp(45px, 10vw, 90px);
+    letter-spacing: -3px;
+    margin-bottom: 10px;
+}
+
+.intro h1 span {
+    color: #4ca3ff;
+    text-shadow: 0 0 25px rgba(30, 140, 255, 0.6);
+}
+
+.intro p {
+    color: #aeb6c2;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.btn {
+    background: transparent;
+    color: white;
+    border: 1px solid #268cff;
+    padding: 14px 32px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 119, 255, 0.12);
+}
+
+.btn:hover {
+    background: #087cff;
+    box-shadow: 0 0 30px rgba(0, 119, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+/* SECOND SCREEN */
+.panel {
+    width: min(650px, 95%);
+    border: 1px solid #252c36;
+    background: rgba(10, 13, 19, 0.9);
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.panel::before {
+    content: "01";
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    color: #278fff;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.panel-title {
+    color: #4da4ff;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.panel h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.panel p {
+    color: #b9c0ca;
+    line-height: 1.8;
+}
+
+/* BADMINTON CARD */
+.sport-card {
+    margin-top: 25px;
+    border-left: 3px solid #258fff;
+    padding: 18px;
+    background: rgba(20, 30, 45, 0.5);
+}
+
+.sport-card h3 {
+    margin-bottom: 8px;
+}
+
+.sport-card p {
+    font-size: 14px;
+}
+
+/* LETTER */
+.letter {
+    width: min(760px, 96%);
+    background: #f5f5f5;
+    color: #111;
+    padding: 35px;
+    border-radius: 3px;
+    position: relative;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+}
+
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid #bfc7d1;
+    pointer-events: none;
+}
+
+.letter-top {
+    color: #147fe5;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.letter h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.letter-text {
+    white-space: pre-line;
+    line-height: 1.75;
+    font-size: 14px;
+    color: #292929;
+}
+
+.next-area {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* FINAL */
+.final {
+    text-align: center;
+    max-width: 700px;
+    z-index: 2;
+}
+
+.final .number {
+    color: #3f9cff;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.final h1 {
+    font-size: clamp(40px, 9vw, 75px);
+    margin-bottom: 15px;
+}
+
+.final h1 span {
+    color: #3f9cff;
+    text-shadow: 0 0 25px rgba(40, 145, 255, 0.5);
+}
+
+.final p {
+    color: #aab2bd;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* SHUTTLECOCK */
+.shuttle {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 25px;
+    position: relative;
+}
+
+.shuttle::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    bottom: 0;
+    left: 14px;
+}
+
+.shuttle::after {
+    content: "✦";
+    position: absolute;
+    color: #3297ff;
+    font-size: 35px;
+    top: -10px;
+    left: 5px;
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    background: #318fff;
+    top: -10px;
+    animation: fall 4s linear forwards;
+    z-index: 10;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+    .panel {
+        padding: 25px 20px;
+    }
+
+    .panel h2 {
+        font-size: 28px;
+    }
+
+    .letter {
+        padding: 25px 20px;
+    }
+
+    .letter h2 {
+        font-size: 25px;
+    }
+
+    .letter-text {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+
+    <div class="speed-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <div class="intro">
+
+        <div class="small-text">A LITTLE SOMETHING FOR YOU</div>
+
+        <h1>
+            Hey, <span>Dabidskiiii</span>
+        </h1>
+
+        <p>
+            This isn't just a birthday greeting.
+            Take your time and open it.
+        </p>
+
+        <button class="btn" onclick="nextScreen(2)">
+            OPEN →
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+
+    <div class="panel">
+
+        <div class="panel-title">BIRTHDAY FILE // 01</div>
+
+        <h2>For the birthday boy.</h2>
+
+        <p>
+            There's actually a lot I want to say,
+            but let's start with this...
+        </p>
+
+        <div class="sport-card">
+
+            <h3>BADMINTON MODE: ON</h3>
+
+            <p>
+                Good luck sa badminton tournament niyo!!
+                Kahit alam naman nating hindi kayo masyadong
+                prepared HAHAHA. Laban lang!!
+            </p>
+
+        </div>
+
+        <br>
+
+        <button class="btn" onclick="nextScreen(3)">
+            CONTINUE →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 3 LETTER -->
+<section class="screen" id="screen3">
+
+    <div class="letter">
+
+        <div class="letter-top">
+            BIRTHDAY MESSAGE // FOR YOU
+        </div>
+
+        <h2>Happy birthday, Dabidskiiii!!</h2>
+
+        <div class="letter-text">
+
+First of all, I just want to say how grateful I am that I met you. I’m really thankful na dumating ka sa buhay ko and that I got to experience so many new things with you. You made me experience things I never thought I would, and honestly, I’m happy that I got to experience those moments with you.
+
+Alam mo naman na may mga tampo ako sa’yo HAHAHA, and minsan talaga nakakainis ka. Pero kahit gaano kalaki yung tampo ko, hindi naman ibig sabihin na nababawasan agad yung love ko sa’yo. I still care about you so much, and ikaw pa rin yung ikaw na mahal ko.
+
+On your birthday, I just want you to know how proud I am of you. I’m proud of the person you are and of everything you’re trying to achieve. I hope you continue chasing your dreams and doing the things that make you happy. Good luck sa journey mo, and I hope you succeed in everything you work hard for!!
+
+And syempre, good luck din sa badminton tournament niyo!! Kahit alam naman nating hindi kayo masyadong prepared HAHAHA, laban lang kayo!! Basta gawin niyo yung kaya niyo, enjoy the game, and huwag kayong susuko agad. Malay niyo, biglang magpakitang-gilas kayo HAHAHA!!
+
+Pero seriously, kahit ano pa mangyari sa tournament, I’ll still be proud of you. Just do your best, stay focused, and enjoy the experience. Kaya niyo ’yan!! Andito lang ako, silently cheering for you.
+
+I hope you know na may isang taong laging masaya kapag may magandang nangyayari sa’yo. I’ll always be happy for your achievements, kahit gaano pa kaliit ’yan. And whenever you doubt yourself, I hope you remember na kaya mo ’yan.
+
+Thank you for being you, for all the memories, for making me laugh, for the moments we shared, and especially for letting me experience a kind of happiness I didn't know I could have.
+
+So ayun, enjoy your day, birthday boy. Deserve mong maging happy today, so please smile a lot, eat good food, and enjoy your special day!!
+
+Happy birthday, Dabidskiiii!! I’m always proud of you!!
+
+And lastly...
+
+I love you so much, da.
+
+        </div>
+
+        <div class="next-area">
+            <button class="btn" onclick="nextScreen(4)">
+                ONE LAST THING →
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+<section class="screen" id="screen4">
+
+    <div class="speed-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <div class="final">
+
+        <div class="shuttle"></div>
+
+        <div class="number">FINAL PAGE // 04</div>
+
+        <h1>
+            Happy Birthday,<br>
+            <span>Dabidskiiii.</span>
+        </h1>
+
+        <p>
+            Keep going. Keep chasing your dreams.
+            And always remember that someone is proud of you.
+        </p>
+
+        <button class="btn" onclick="celebrate()">
+            REPLAY
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+let currentScreen = 1;
+
+function nextScreen(number) {
+
+    document.getElementById("screen" + currentScreen)
+        .classList.remove("active");
+
+    document.getElementById("screen" + number)
+        .classList.add("active");
+
+    currentScreen = number;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function celebrate() {
+
+    for (let i = 0; i < 45; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.classList.add("confetti");
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        piece.style.opacity =
+            Math.random();
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 5000);
+    }
+
+    setTimeout(() => {
+        nextScreen(1);
+    }, 1200);
+}
+
+</script>
+
+</body>
+</html>
