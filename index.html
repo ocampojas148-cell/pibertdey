@@ -1,8 +1,320 @@
-<!-- OUR LITTLE MEMORIES -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happiest Birthday, Daa!!</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #dff3ff, #a9dcff, #eaf8ff);
+    color: #164a73;
+}
+
+/* BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #ffffff;
+    opacity: 0.35;
+    border-radius: 50%;
+    top: -180px;
+    left: -150px;
+    filter: blur(50px);
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: #75c8ff;
+    opacity: 0.25;
+    border-radius: 50%;
+    bottom: -180px;
+    right: -120px;
+    filter: blur(60px);
+    z-index: -1;
+}
+
+/* PAGES */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 18px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* CARD */
+.card {
+    width: 100%;
+    max-width: 850px;
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 28px;
+    box-shadow: 0 15px 40px rgba(40,120,180,0.18);
+    backdrop-filter: blur(10px);
+}
+
+/* TEXT */
+h1 {
+    font-size: clamp(38px, 8vw, 70px);
+    color: #167ac1;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: clamp(28px, 6vw, 45px);
+    color: #167ac1;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+/* BUTTON */
+button {
+    margin-top: 25px;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #239eea, #55c4ff);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(35,158,234,0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* ENVELOPE */
+.envelope {
+    width: 180px;
+    height: 120px;
+    margin: 25px auto;
+    background: #69c5f5;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(40,130,190,0.2);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-top: 65px solid #bdeaff;
+}
+
+/* PHOTOS */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.photo {
+    background: white;
+    padding: 10px;
+    border-radius: 18px;
+    box-shadow: 0 7px 20px rgba(40,120,180,0.15);
+}
+
+.photo img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 13px;
+    display: block;
+}
+
+.photo p {
+    padding: 9px 3px 3px;
+    font-size: 13px;
+    color: #39789f;
+}
+
+/* WISHES */
+.wishes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.wish {
+    background: rgba(255,255,255,0.8);
+    padding: 13px 18px;
+    border-radius: 25px;
+    box-shadow: 0 6px 15px rgba(50,130,180,0.12);
+}
+
+/* GIFT */
+.gift {
+    width: 150px;
+    height: 120px;
+    background: #55bdf2;
+    margin: 30px auto;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gift::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 120px;
+    background: #eaf9ff;
+    left: 62px;
+}
+
+.gift::after {
+    content: "🎁";
+    position: absolute;
+    font-size: 55px;
+    top: 25px;
+    left: 47px;
+}
+
+.gift.open::after {
+    content: "✨";
+}
+
+/* LETTER */
+.letter {
+    text-align: left;
+    background: rgba(255,255,255,0.65);
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 20px;
+    line-height: 1.8;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.letter p {
+    margin-bottom: 17px;
+}
+
+/* FINAL */
+.final {
+    font-size: clamp(30px, 7vw, 60px);
+    color: #167ac1;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+    .page {
+        padding: 20px 12px;
+    }
+
+    .card {
+        padding: 28px 16px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .photo {
+        padding: 7px;
+    }
+
+    .photo img {
+        height: 150px;
+    }
+
+    .photo p {
+        font-size: 11px;
+    }
+
+    .letter {
+        padding: 18px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+    <div class="card">
+
+        <div class="envelope"></div>
+
+        <h1>Happiest Birthday, Daa!!</h1>
+
+        <p>
+            I made something special for you.
+        </p>
+
+        <button onclick="nextPage(2)">
+            Open your surprise
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+    <div class="card">
+
+        <h2>For you, Daa.</h2>
+
+        <p>
+            Before anything else, I just want you to know
+            how special today is.
+        </p>
+
+        <button onclick="nextPage(3)">
+            Continue
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 3 -->
 <section class="page" id="page3">
     <div class="card">
+
         <h2>Our Little Memories</h2>
-        <p>Some of my favorite moments with you.</p>
+
+        <p>
+            A few moments worth remembering.
+        </p>
 
         <div class="photo-grid">
 
@@ -32,12 +344,186 @@
             </div>
 
             <div class="photo">
-                <img src="photo6.jpg" alt="Memory 6">
-                <p>and another one</p>
+                <img src="photo6.jpg" alt="Memory 6</p>
             </div>
 
         </div>
 
-        <button onclick="nextPage(4)">Continue</button>
+        <button onclick="nextPage(4)">
+            Continue
+        </button>
+
     </div>
 </section>
+
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+    <div class="card">
+
+        <h2>For Your Journey</h2>
+
+        <p>
+            Some little wishes for you.
+        </p>
+
+        <div class="wishes">
+
+            <div class="wish">Stay happy</div>
+            <div class="wish">Good luck always</div>
+            <div class="wish">Keep chasing your dreams</div>
+            <div class="wish">I'm proud of you</div>
+            <div class="wish">You got this</div>
+            <div class="wish">Enjoy every moment</div>
+
+        </div>
+
+        <button onclick="nextPage(5)">
+            One last surprise
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+    <div class="card">
+
+        <h2>Last surprise...</h2>
+
+        <p>
+            Click the gift.
+        </p>
+
+        <div class="gift" onclick="openGift()"></div>
+
+        <button onclick="nextPage(6)">
+            Open my letter
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 6 -->
+<section class="page" id="page6">
+    <div class="card">
+
+        <h2>Happy Birthday, My Babyyy</h2>
+
+        <div class="letter">
+
+            <p>
+                Happy birthday, Dabidskiiii!!
+            </p>
+
+            <p>
+                First of all, I just want to say how grateful I am that I met you. I’m really thankful na dumating ka sa buhay ko and that I got to experience so many new things with you. You made me experience things I never thought I would, and honestly, I’m happy that I got to experience those moments with you.
+            </p>
+
+            <p>
+                Alam mo naman na may mga tampo ako sa’yo HAHAHA, and minsan talaga nakakainis ka. Pero kahit gaano kalaki yung tampo ko, hindi naman ibig sabihin na nababawasan agad yung love ko sa’yo. I still care about you so much, and ikaw pa rin yung ikaw na mahal ko.
+            </p>
+
+            <p>
+                On your birthday, I just want you to know how proud I am of you. I’m proud of the person you are and of everything you’re trying to achieve. I hope you continue chasing your dreams and doing the things that make you happy. Good luck sa journey mo, and I hope you succeed in everything you work hard for!!
+            </p>
+
+            <p>
+                And syempre, good luck din sa badminton tournament niyo!! Kahit alam naman nating hindi kayo masyadong prepared HAHAHA, laban lang kayo!! Basta gawin niyo yung kaya niyo, enjoy the game, and huwag kayong susuko agad. Malay niyo, biglang magpakitang-gilas kayo HAHAHA!!
+            </p>
+
+            <p>
+                Pero seriously, kahit ano pa mangyari sa tournament, I’ll still be proud of you. Just do your best, stay focused, and enjoy the experience. Kaya niyo ’yan!! Andito lang ako, silently cheering for you.
+            </p>
+
+            <p>
+                I hope you know na may isang taong laging masaya kapag may magandang nangyayari sa’yo. I’ll always be happy for your achievements, kahit gaano pa kaliit ’yan. And whenever you doubt yourself, I hope you remember na kaya mo ’yan.
+            </p>
+
+            <p>
+                Thank you for being you, for all the memories, for making me laugh, for the moments we shared, and especially for letting me experience a kind of happiness I didn't know I could have.
+            </p>
+
+            <p>
+                So ayun, enjoy your day, birthday boy. Deserve mong maging happy today, so please smile a lot, eat good food, and enjoy your special day!!
+            </p>
+
+            <p>
+                Happy birthday, Dabidskiiii!! I’m always proud of you!!
+            </p>
+
+            <p>
+                And lastly...
+            </p>
+
+            <p>
+                I love you so much, da.
+            </p>
+
+        </div>
+
+        <button onclick="nextPage(7)">
+            One more thing
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 7 -->
+<section class="page" id="page7">
+    <div class="card">
+
+        <div class="final">
+            Happy Birthday,<br>
+            Dabidskiiii!!
+        </div>
+
+        <p style="margin-top:20px;">
+            Enjoy your special day, Daa.
+        </p>
+
+        <button onclick="restart()">
+            Start again
+        </button>
+
+    </div>
+</section>
+
+
+<script>
+
+function nextPage(number) {
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + number).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function openGift() {
+
+    document.querySelector(".gift").classList.toggle("open");
+
+}
+
+
+function restart() {
+
+    nextPage(1);
+
+}
+
+</script>
+
+</body>
+</html>
