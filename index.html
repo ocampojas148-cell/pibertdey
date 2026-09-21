@@ -7,6 +7,11 @@
 <title>Happiest Birthday, Daa!!</title>
 
 <style>
+
+/* =========================
+   BASIC
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,88 +26,261 @@ body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+
     background:
         radial-gradient(circle at 10% 10%, #ffffff 0%, transparent 28%),
-        radial-gradient(circle at 90% 85%, #8ed8ff 0%, transparent 30%),
-        linear-gradient(135deg, #eaf8ff, #bde8ff, #d9f4ff);
-    color: #245878;
+        radial-gradient(circle at 90% 85%, #d7b8ff 0%, transparent 30%),
+        linear-gradient(135deg, #f4edff, #d9f1ff, #fff1fb);
+
+    color: #315b78;
 }
 
-/* SOFT BACKGROUND LIGHTS */
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
 
 body::before {
     content: "";
     position: fixed;
+
     width: 420px;
     height: 420px;
+
     border-radius: 50%;
+
     background: #ffffff;
-    opacity: 0.45;
+    opacity: 0.55;
+
     filter: blur(80px);
+
     top: -180px;
     left: -130px;
+
     z-index: -1;
 }
 
 body::after {
     content: "";
     position: fixed;
+
     width: 400px;
     height: 400px;
+
     border-radius: 50%;
-    background: #71c9f5;
-    opacity: 0.25;
+
+    background: #c9a5ff;
+    opacity: 0.22;
+
     filter: blur(80px);
+
     right: -150px;
     bottom: -160px;
+
     z-index: -1;
 }
 
-/* PAGE */
+
+/* =========================
+   FLOATING SPARKLES
+========================= */
+
+.floating {
+    position: fixed;
+
+    font-size: 22px;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: floatAround 5s ease-in-out infinite;
+}
+
+.f1 {
+    top: 10%;
+    left: 8%;
+}
+
+.f2 {
+    top: 20%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.f3 {
+    bottom: 15%;
+    left: 12%;
+    animation-delay: 2s;
+}
+
+.f4 {
+    bottom: 25%;
+    right: 8%;
+    animation-delay: 3s;
+}
+
+@keyframes floatAround {
+
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: .6;
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   BALLOONS
+========================= */
+
+.balloon {
+    position: fixed;
+
+    width: 42px;
+    height: 52px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    opacity: .75;
+
+    z-index: 0;
+
+    animation: balloonFloat 6s ease-in-out infinite;
+}
+
+.balloon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1px;
+    height: 70px;
+
+    background: #7d8fa0;
+
+    left: 50%;
+    top: 48px;
+}
+
+.b1 {
+    background: #d9b7ff;
+    left: 3%;
+    bottom: 10%;
+}
+
+.b2 {
+    background: #a9ddff;
+    right: 4%;
+    top: 15%;
+    animation-delay: 2s;
+}
+
+@keyframes balloonFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+}
+
+
+/* =========================
+   PAGE
+========================= */
 
 .page {
     display: none;
+
     min-height: 100vh;
+
     padding: 30px 16px;
+
     justify-content: center;
     align-items: center;
+
     text-align: center;
+
+    position: relative;
+
+    z-index: 1;
 }
 
 .page.active {
     display: flex;
+
+    animation: pageIn .7s ease;
 }
 
-/* MAIN CARD */
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================
+   CARD
+========================= */
 
 .card {
     width: 100%;
     max-width: 900px;
+
     padding: 35px 25px;
+
     border-radius: 30px;
 
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255,255,255,.74);
 
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255,255,255,.9);
 
     box-shadow:
-        0 20px 50px rgba(48, 133, 181, 0.18),
-        inset 0 1px 0 rgba(255,255,255,0.8);
+        0 20px 50px rgba(90,100,180,.16),
+        inset 0 1px 0 rgba(255,255,255,.8);
 
     backdrop-filter: blur(15px);
+
+    position: relative;
+
+    overflow: hidden;
 }
 
-/* HEADINGS */
+
+/* =========================
+   HEADINGS
+========================= */
 
 h1 {
     font-size: clamp(38px, 8vw, 70px);
-    color: #1683c7;
+
+    color: #7b54c7;
+
     margin-bottom: 15px;
+
+    text-shadow:
+        0 4px 15px rgba(123,84,199,.15);
 }
 
 h2 {
     font-size: clamp(28px, 6vw, 45px);
-    color: #1683c7;
+
+    color: #7652bd;
+
     margin-bottom: 15px;
 }
 
@@ -110,39 +288,80 @@ p {
     line-height: 1.7;
 }
 
-/* BUTTON */
+
+/* =========================
+   SPARKLE
+========================= */
+
+.sparkle {
+    color: #9b70d9;
+
+    font-size: 24px;
+
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+
+    0%,100% {
+        transform: scale(1);
+        opacity: .7;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   BUTTON
+========================= */
 
 button {
     margin-top: 25px;
+
     padding: 13px 25px;
 
     border: none;
+
     border-radius: 30px;
 
-    background: linear-gradient(
-        135deg,
-        #249fe5,
-        #62c9f5
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #8d68d1,
+            #65c7ed
+        );
 
     color: white;
+
     font-size: 16px;
 
     cursor: pointer;
 
     box-shadow:
-        0 8px 20px rgba(35, 150, 220, 0.25);
+        0 8px 20px rgba(100,100,190,.22);
 
-    transition: 0.25s;
+    transition: .25s;
 }
 
 button:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.02);
+
     box-shadow:
-        0 12px 25px rgba(35, 150, 220, 0.32);
+        0 12px 25px rgba(100,100,190,.3);
 }
 
-/* ENVELOPE */
+button:active {
+    transform: scale(.96);
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
 
 .envelope {
     width: 190px;
@@ -150,14 +369,16 @@ button:hover {
 
     margin: 25px auto;
 
-    background: #68c5ef;
+    background: #78c9ed;
 
     border-radius: 12px;
 
     position: relative;
 
     box-shadow:
-        0 15px 30px rgba(40, 130, 190, 0.2);
+        0 15px 30px rgba(40,130,190,.2);
+
+    animation: envelopeFloat 3s ease-in-out infinite;
 }
 
 .envelope::before {
@@ -170,10 +391,157 @@ button:hover {
 
     border-left: 95px solid transparent;
     border-right: 95px solid transparent;
-    border-top: 70px solid #bfeaff;
+    border-top: 70px solid #c9ebff;
+
+    z-index: 2;
 }
 
-/* PHOTO SECTION */
+.envelope::after {
+    content: "💌";
+
+    position: absolute;
+
+    font-size: 45px;
+
+    left: 72px;
+    top: 40px;
+
+    z-index: 3;
+}
+
+@keyframes envelopeFloat {
+
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+.cake-area {
+    margin: 25px auto 5px;
+
+    cursor: pointer;
+
+    width: 230px;
+
+    position: relative;
+
+    transition: .3s;
+}
+
+.cake-area:hover {
+    transform: scale(1.04);
+}
+
+.cake {
+    position: relative;
+
+    width: 180px;
+    height: 100px;
+
+    margin: 0 auto;
+
+    background: #cba5ee;
+
+    border-radius: 15px 15px 25px 25px;
+
+    box-shadow:
+        0 15px 25px rgba(110,80,160,.2);
+}
+
+.cake::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 28px;
+
+    background: #fff4ff;
+
+    border-radius: 50%;
+
+    top: -12px;
+    left: 0;
+}
+
+.cake::after {
+    content: "♡  ♡  ♡";
+
+    position: absolute;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    left: 43px;
+    top: 38px;
+}
+
+.candle {
+    position: absolute;
+
+    width: 12px;
+    height: 45px;
+
+    background: #8bcff0;
+
+    left: calc(50% - 6px);
+
+    top: -55px;
+
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+
+    width: 17px;
+    height: 25px;
+
+    background: #ffd45c;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    left: -3px;
+    top: -23px;
+
+    animation: flame 1s ease-in-out infinite;
+}
+
+@keyframes flame {
+
+    0%,100% {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(-40deg) scale(1.15);
+    }
+}
+
+.cake-hint {
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #7c6a92;
+}
+
+
+/* =========================
+   PHOTO SECTION
+========================= */
 
 .photo-grid {
     display: grid;
@@ -194,13 +562,13 @@ button:hover {
     border-radius: 18px;
 
     box-shadow:
-        0 8px 20px rgba(40, 120, 180, 0.14);
+        0 8px 20px rgba(40,120,180,.14);
 
-    transition: 0.25s;
+    transition: .25s;
 }
 
 .photo:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px) rotate(.5deg);
 }
 
 .photo img {
@@ -223,7 +591,10 @@ button:hover {
     color: #39789f;
 }
 
-/* WISHES */
+
+/* =========================
+   WISHES
+========================= */
 
 .wishes {
     display: flex;
@@ -238,19 +609,30 @@ button:hover {
 }
 
 .wish {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,.85);
 
     padding: 13px 18px;
 
     border-radius: 25px;
 
-    color: #27749e;
+    color: #6e59a1;
 
     box-shadow:
-        0 7px 18px rgba(50,130,180,0.12);
+        0 7px 18px rgba(80,80,150,.12);
+
+    transition: .25s;
 }
 
-/* GIFT */
+.wish:hover {
+    transform: translateY(-4px);
+
+    background: #ffffff;
+}
+
+
+/* =========================
+   GIFT
+========================= */
 
 .gift {
     width: 150px;
@@ -258,7 +640,7 @@ button:hover {
 
     margin: 30px auto;
 
-    background: #5bbff0;
+    background: #9c72d5;
 
     position: relative;
 
@@ -267,9 +649,9 @@ button:hover {
     cursor: pointer;
 
     box-shadow:
-        0 12px 25px rgba(40,130,190,0.2);
+        0 12px 25px rgba(80,70,150,.2);
 
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .gift:hover {
@@ -284,7 +666,7 @@ button:hover {
     width: 25px;
     height: 120px;
 
-    background: #e9f9ff;
+    background: #f4eaff;
 
     left: 62px;
 }
@@ -298,22 +680,30 @@ button:hover {
 
     top: 25px;
     left: 47px;
+
+    transition: .3s;
 }
 
 .gift.open {
-    transform: scale(1.08);
+    transform: scale(1.08) rotate(-2deg);
+
+    box-shadow:
+        0 0 35px rgba(180,130,255,.6);
 }
 
 .gift.open::after {
     content: "✨";
 }
 
-/* LETTER */
+
+/* =========================
+   LETTER
+========================= */
 
 .letter {
     text-align: left;
 
-    background: rgba(255,255,255,0.68);
+    background: rgba(255,255,255,.72);
 
     padding: 25px;
 
@@ -328,33 +718,219 @@ button:hover {
     overflow-y: auto;
 
     box-shadow:
-        inset 0 0 20px rgba(80,170,220,0.05);
+        inset 0 0 20px rgba(80,170,220,.05);
 }
 
 .letter p {
     margin-bottom: 17px;
 }
 
-/* FINAL */
+
+/* =========================
+   NOTEBOOK
+========================= */
+
+.notebook-wrapper {
+    margin: 30px auto;
+
+    width: min(430px, 90vw);
+
+    perspective: 1200px;
+}
+
+.notebook {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 300px;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    transition: .3s;
+}
+
+.notebook-cover,
+.notebook-page {
+    width: 100%;
+
+    min-height: 300px;
+
+    border-radius: 8px 18px 18px 8px;
+
+    box-shadow:
+        0 18px 35px rgba(80,70,130,.2);
+}
+
+.notebook-cover {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9270d4,
+            #b89be9
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+
+    border-left: 12px solid #7451ae;
+
+    transform-origin: left center;
+
+    z-index: 3;
+
+    transition: transform 1s ease;
+}
+
+.notebook-cover h3 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.notebook-cover p {
+    font-size: 14px;
+}
+
+.notebook-cover::after {
+    content: "♡  ✦  ♡";
+
+    margin-top: 25px;
+
+    font-size: 20px;
+}
+
+.notebook-page {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #fffdf5 0px,
+            #fffdf5 28px,
+            #d9e7ef 29px
+        );
+
+    padding: 30px;
+
+    text-align: left;
+
+    color: #566777;
+}
+
+.notebook-page::before {
+    content: "";
+
+    position: absolute;
+
+    left: 45px;
+    top: 0;
+
+    height: 100%;
+
+    border-left: 2px solid #efb4c5;
+}
+
+.notebook-page-content {
+    margin-left: 35px;
+}
+
+.notebook-page h3 {
+    color: #7652bd;
+
+    margin-bottom: 15px;
+}
+
+.notebook.open .notebook-cover {
+    transform: rotateY(-145deg);
+}
+
+.notebook-hint {
+    margin-top: 12px;
+
+    color: #776a8b;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   FINAL
+========================= */
 
 .final {
     font-size: clamp(32px, 7vw, 65px);
 
-    color: #1683c7;
+    color: #7652bd;
 
     font-weight: bold;
 
     line-height: 1.2;
+
+    animation: finalGlow 2s ease-in-out infinite;
 }
 
-/* SMALL DECORATIONS */
+@keyframes finalGlow {
 
-.sparkle {
-    color: #4bb8ed;
-    font-size: 22px;
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
 }
 
-/* MOBILE */
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+    position: fixed;
+
+    width: 9px;
+    height: 14px;
+
+    top: -20px;
+
+    z-index: 999;
+
+    pointer-events: none;
+
+    animation:
+        confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
@@ -364,21 +940,25 @@ button:hover {
 
     .card {
         padding: 28px 16px;
+
         border-radius: 25px;
     }
 
     .photo-grid {
         grid-template-columns: 1fr 1fr;
+
         gap: 10px;
     }
 
     .photo {
         padding: 7px;
+
         border-radius: 14px;
     }
 
     .photo img {
         height: 150px;
+
         border-radius: 10px;
     }
 
@@ -388,6 +968,7 @@ button:hover {
 
     .letter {
         padding: 18px;
+
         font-size: 14px;
     }
 
@@ -401,7 +982,35 @@ button:hover {
         border-right-width: 80px;
         border-top-width: 60px;
     }
+
+    .envelope::after {
+        left: 58px;
+        top: 32px;
+    }
+
+    .notebook-cover,
+    .notebook-page {
+        min-height: 280px;
+    }
+
 }
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+
+}
+
 </style>
 </head>
 
@@ -409,439 +1018,521 @@ button:hover {
 <body>
 
 
-<!-- ========================= -->
-<!-- PAGE 1 : OPENING -->
-<!-- ========================= -->
+<!-- FLOATING DECORATIONS -->
+
+<div class="floating f1">✦</div>
+<div class="floating f2">♡</div>
+<div class="floating f3">✧</div>
+<div class="floating f4">♡</div>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+
+
+<!-- =========================
+     PAGE 1 : OPENING
+========================= -->
 
 <section class="page active" id="page1">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">✦ ✧ ✦</div>
-
-        <div class="envelope"></div>
-
-        <h1>
-            Happiest Birthday, Daa!!
-        </h1>
-
-        <p>
-            I made something special for you.
-        </p>
-
-        <button onclick="nextPage(2)">
-            Open your surprise
-        </button>
-
+    <div class="sparkle">
+        ✦ ✧ ✦
     </div>
+
+    <div class="envelope"></div>
+
+    <h1>
+        Happiest Birthday, Daa!!
+    </h1>
+
+    <p>
+        I made something special for you.
+    </p>
+
+    <button onclick="nextPage(2); confetti()">
+        Open your surprise
+    </button>
+
+</div>
 
 </section>
 
 
-
-<!-- ========================= -->
-<!-- PAGE 2 : FOR YOU -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE 2 : FOR YOU
+========================= -->
 
 <section class="page" id="page2">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">♡</div>
+    <div class="sparkle">
+        ♡
+    </div>
 
-        <h2>
-            For you, Daa.
-        </h2>
+    <h2>
+        For you, Daa.
+    </h2>
 
-        <p>
-            Before anything else, I just want you to know
-            how special today is.
-        </p>
+    <p>
+        Before anything else, I just want you to know
+        how special today is.
+    </p>
 
-        <p style="margin-top: 12px;">
-            So I made this little birthday surprise
-            just for you.
-        </p>
+    <p style="margin-top:12px;">
+        So I made this little birthday surprise
+        just for you.
+    </p>
 
-        <button onclick="nextPage(3)">
-            Continue
-        </button>
+
+    <!-- CAKE -->
+
+    <div
+        class="cake-area"
+        onclick="cakeCelebration()"
+    >
+
+        <div class="cake">
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+            </div>
+
+        </div>
 
     </div>
+
+    <div class="cake-hint">
+        🎂 Tap the cake!
+    </div>
+
+
+    <button onclick="nextPage(3)">
+        Continue
+    </button>
+
+</div>
 
 </section>
 
 
-
-<!-- ========================= -->
-<!-- PAGE 3 : SIX PHOTOS -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE 3 : PHOTOS
+========================= -->
 
 <section class="page" id="page3">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">✦</div>
+    <div class="sparkle">
+        ✦
+    </div>
 
-        <h2>
-            Our Little Memories
-        </h2>
+    <h2>
+        Our Little Memories
+    </h2>
 
-        <p>
-            A few moments worth remembering.
-        </p>
-
-
-        <div class="photo-grid">
-
-
-            <!-- PHOTO 1 -->
-
-            <div class="photo">
-
-                <img
-                    src="photo1.jpg"
-                    alt="Memory 1"
-                >
-
-                <p>
-                    one of my favorite memories
-                </p>
-
-            </div>
+    <p>
+        A few moments worth remembering.
+    </p>
 
 
-            <!-- PHOTO 2 -->
+    <div class="photo-grid">
 
-            <div class="photo">
+        <div class="photo">
 
-                <img
-                    src="photo2.jpg"
-                    alt="Memory 2"
-                >
+            <img
+                src="photo1.jpg"
+                alt="Memory 1"
+            >
 
-                <p>
-                    a special moment
-                </p>
-
-            </div>
-
-
-            <!-- PHOTO 3 -->
-
-            <div class="photo">
-
-                <img
-                    src="photo3.jpg"
-                    alt="Memory 3"
-                >
-
-                <p>
-                    another favorite memory
-                </p>
-
-            </div>
-
-
-            <!-- PHOTO 4 -->
-
-            <div class="photo">
-
-                <img
-                    src="photo4.jpg"
-                    alt="Memory 4"
-                >
-
-                <p>
-                    a moment I'll remember
-                </p>
-
-            </div>
-
-
-            <!-- PHOTO 5 -->
-
-            <div class="photo">
-
-                <img
-                    src="photo5.jpg"
-                    alt="Memory 5"
-                >
-
-                <p>
-                    one more memory
-                </p>
-
-            </div>
-
-
-            <!-- PHOTO 6 -->
-
-            <div class="photo">
-
-                <img
-                    src="photo6.jpg"
-                    alt="Memory 6"
-                >
-
-                <p>
-                    and another one
-                </p>
-
-            </div>
-
+            <p>
+                one of my favorite memories
+            </p>
 
         </div>
 
 
-        <button onclick="nextPage(4)">
-            Continue
-        </button>
+        <div class="photo">
+
+            <img
+                src="photo2.jpg"
+                alt="Memory 2"
+            >
+
+            <p>
+                a special moment
+            </p>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo3.jpg"
+                alt="Memory 3"
+            >
+
+            <p>
+                another favorite memory
+            </p>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo4.jpg"
+                alt="Memory 4"
+            >
+
+            <p>
+                a moment I'll remember
+            </p>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo5.jpg"
+                alt="Memory 5"
+            >
+
+            <p>
+                one more memory
+            </p>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo6.jpg"
+                alt="Memory 6"
+            >
+
+            <p>
+                and another one
+            </p>
+
+        </div>
 
     </div>
+
+
+    <button onclick="nextPage(4)">
+        Continue
+    </button>
+
+</div>
 
 </section>
 
 
-
-<!-- ========================= -->
-<!-- PAGE 4 : WISHES -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE 4 : WISHES
+========================= -->
 
 <section class="page" id="page4">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">✧ ✦ ✧</div>
+    <div class="sparkle">
+        ✧ ✦ ✧
+    </div>
 
-        <h2>
-            For Your Journey
-        </h2>
+    <h2>
+        For Your Journey
+    </h2>
 
-        <p>
-            Some little wishes for you.
-        </p>
+    <p>
+        Some little wishes for you.
+    </p>
 
 
-        <div class="wishes">
+    <div class="wishes">
 
-            <div class="wish">
-                Stay happy
-            </div>
-
-            <div class="wish">
-                Good luck always
-            </div>
-
-            <div class="wish">
-                Keep chasing your dreams
-            </div>
-
-            <div class="wish">
-                I'm proud of you
-            </div>
-
-            <div class="wish">
-                You got this
-            </div>
-
-            <div class="wish">
-                Enjoy every moment
-            </div>
-
+        <div class="wish">
+            Stay happy
         </div>
 
+        <div class="wish">
+            Good luck always
+        </div>
 
-        <button onclick="nextPage(5)">
-            One last surprise
-        </button>
+        <div class="wish">
+            Keep chasing your dreams
+        </div>
+
+        <div class="wish">
+            I'm proud of you
+        </div>
+
+        <div class="wish">
+            You got this
+        </div>
+
+        <div class="wish">
+            Enjoy every moment
+        </div>
 
     </div>
+
+
+    <button onclick="nextPage(5); confetti()">
+        One last surprise
+    </button>
+
+</div>
 
 </section>
 
 
-
-<!-- ========================= -->
-<!-- PAGE 5 : GIFT -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE 5 : NOTEBOOK
+========================= -->
 
 <section class="page" id="page5">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">✦</div>
+    <div class="sparkle">
+        ✦
+    </div>
 
-        <h2>
-            Last surprise...
-        </h2>
+    <h2>
+        A Little Note For You
+    </h2>
 
-        <p>
-            Click the gift.
-        </p>
+    <p>
+        There's something waiting inside.
+    </p>
 
+
+    <div class="notebook-wrapper">
 
         <div
-            class="gift"
-            onclick="openGift()"
-        ></div>
+            class="notebook"
+            onclick="openNotebook()"
+        >
+
+            <div class="notebook-cover">
+
+                <h3>
+                    For Daa ♡
+                </h3>
+
+                <p>
+                    A little birthday note
+                </p>
+
+            </div>
 
 
-        <button onclick="nextPage(6)">
-            Open my letter
-        </button>
+            <div class="notebook-page">
+
+                <div class="notebook-page-content">
+
+                    <h3>
+                        Happy Birthday! ♡
+                    </h3>
+
+                    <p>
+                        Today is your special day,
+                        so don't forget to smile,
+                        enjoy yourself, and remember
+                        how loved and appreciated you are.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        You deserve all the good things
+                        coming your way. ✨
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
+
+
+    <div class="notebook-hint">
+        📖 Tap the notebook to open it
+    </div>
+
+
+    <button onclick="nextPage(6)">
+        Open my letter
+    </button>
+
+</div>
 
 </section>
 
 
-
-<!-- ========================= -->
-<!-- PAGE 6 : LETTER -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE 6 : LETTER
+========================= -->
 
 <section class="page" id="page6">
 
-    <div class="card">
+<div class="card">
 
-        <div class="sparkle">♡</div>
-
-        <h2>
-            Happy Birthday, My Babyyy
-        </h2>
-
-
-        <div class="letter">
-
-
-            <p>
-                Happy birthday, Dabidskiiii!!
-            </p>
-
-
-            <p>
-                First of all, I just want to say how grateful I am that I met you. I’m really thankful na dumating ka sa buhay ko and that I got to experience so many new things with you. You made me experience things I never thought I would, and honestly, I’m happy that I got to experience those moments with you.
-            </p>
-
-
-            <p>
-                Alam mo naman na may mga tampo ako sa’yo HAHAHA, and minsan talaga nakakainis ka. Pero kahit gaano kalaki yung tampo ko, hindi naman ibig sabihin na nababawasan agad yung love ko sa’yo. I still care about you so much, and ikaw pa rin yung ikaw na mahal ko.
-            </p>
-
-
-            <p>
-                On your birthday, I just want you to know how proud I am of you. I’m proud of the person you are and of everything you’re trying to achieve. I hope you continue chasing your dreams and doing the things that make you happy. Good luck sa journey mo, and I hope you succeed in everything you work hard for!!
-            </p>
-
-
-            <p>
-                And syempre, good luck din sa badminton tournament niyo!! Kahit alam naman nating hindi kayo masyadong prepared HAHAHA, laban lang kayo!! Basta gawin niyo yung kaya niyo, enjoy the game, and huwag kayong susuko agad. Malay niyo, biglang magpakitang-gilas kayo HAHAHA!!
-            </p>
-
-
-            <p>
-                Pero seriously, kahit ano pa mangyari sa tournament, I’ll still be proud of you. Just do your best, stay focused, and enjoy the experience. Kaya niyo ’yan!! Andito lang ako, silently cheering for you.
-            </p>
-
-
-            <p>
-                I hope you know na may isang taong laging masaya kapag may magandang nangyayari sa’yo. I’ll always be happy for your achievements, kahit gaano pa kaliit ’yan. And whenever you doubt yourself, I hope you remember na kaya mo ’yan.
-            </p>
-
-
-            <p>
-                Thank you for being you, for all the memories, for making me laugh, for the moments we shared, and especially for letting me experience a kind of happiness I didn't know I could have.
-            </p>
-
-
-            <p>
-                So ayun, enjoy your day, birthday boy. Deserve mong maging happy today, so please smile a lot, eat good food, and enjoy your special day!!
-            </p>
-
-
-            <p>
-                Happy birthday, Dabidskiiii!! I’m always proud of you!!
-            </p>
-
-
-            <p>
-                And lastly...
-            </p>
-
-
-            <p>
-                I love you so much, da.
-            </p>
-
-
-        </div>
-
-
-        <button onclick="nextPage(7)">
-            One more thing
-        </button>
-
+    <div class="sparkle">
+        ♡
     </div>
 
-</section>
+    <h2>
+        Happy Birthday, My Babyyy
+    </h2>
 
 
+    <div class="letter">
 
-<!-- ========================= -->
-<!-- PAGE 7 : FINAL -->
-<!-- ========================= -->
-
-<section class="page" id="page7">
-
-    <div class="card">
-
-        <div class="sparkle">
-            ✦ ✧ ✦
-        </div>
-
-
-        <div class="final">
-
-            Happy Birthday,<br>
-
-            Dabidskiiii!!
-
-        </div>
-
-
-        <p style="margin-top: 22px;">
-
-            Enjoy your special day, Daa.
-
+        <p>
+            Happy birthday, Dabidskiiii!!
         </p>
 
 
-        <button onclick="restart()">
+        <p>
+            First of all, I just want to say how grateful I am that I met you. I’m really thankful na dumating ka sa buhay ko and that I got to experience so many new things with you. You made me experience things I never thought I would, and honestly, I’m happy that I got to experience those moments with you.
+        </p>
 
-            Start again
 
-        </button>
+        <p>
+            Alam mo naman na may mga tampo ako sa’yo HAHAHA, and minsan talaga nakakainis ka. Pero kahit gaano kalaki yung tampo ko, hindi naman ibig sabihin na nababawasan agad yung love ko sa’yo. I still care about you so much, and ikaw pa rin yung ikaw na mahal ko.
+        </p>
+
+
+        <p>
+            On your birthday, I just want you to know how proud I am of you. I’m proud of the person you are and of everything you’re trying to achieve. I hope you continue chasing your dreams and doing the things that make you happy. Good luck sa journey mo, and I hope you succeed in everything you work hard for!!
+        </p>
+
+
+        <p>
+            And syempre, good luck din sa badminton tournament niyo!! Kahit alam naman nating hindi kayo masyadong prepared HAHAHA, laban lang kayo!! Basta gawin niyo yung kaya niyo, enjoy the game, and huwag kayong susuko agad. Malay niyo, biglang magpakitang-gilas kayo HAHAHA!!
+        </p>
+
+
+        <p>
+            Pero seriously, kahit ano pa mangyari sa tournament, I’ll still be proud of you. Just do your best, stay focused, and enjoy the experience. Kaya niyo ’yan!! Andito lang ako, silently cheering for you.
+        </p>
+
+
+        <p>
+            I hope you know na may isang taong laging masaya kapag may magandang nangyayari sa’yo. I’ll always be happy for your achievements, kahit gaano pa kaliit ’yan. And whenever you doubt yourself, I hope you remember na kaya mo ’yan.
+        </p>
+
+
+        <p>
+            Thank you for being you, for all the memories, for making me laugh, for the moments we shared, and especially for letting me experience a kind of happiness I didn't know I could have.
+        </p>
+
+
+        <p>
+            So ayun, enjoy your day, birthday boy. Deserve mong maging happy today, so please smile a lot, eat good food, and enjoy your special day!!
+        </p>
+
+
+        <p>
+            Happy birthday, Dabidskiiii!! I’m always proud of you!!
+        </p>
+
+
+        <p>
+            And lastly...
+        </p>
+
+
+        <p>
+            I love you so much, da.
+        </p>
 
     </div>
+
+
+    <button onclick="nextPage(7); confetti()">
+        One more thing
+    </button>
+
+</div>
 
 </section>
 
 
+<!-- =========================
+     PAGE 7 : FINAL
+========================= -->
 
-<!-- ========================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================= -->
+<section class="page" id="page7">
+
+<div class="card">
+
+    <div class="sparkle">
+        ✦ ✧ ✦
+    </div>
+
+
+    <div class="final">
+
+        Happy Birthday,<br>
+
+        Dabidskiiii!!
+
+    </div>
+
+
+    <p style="margin-top:22px;">
+
+        Enjoy your special day, Daa.
+
+    </p>
+
+
+    <button onclick="restart()">
+
+        Start again
+
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script>
 
+
+/* =========================
+   PAGE NAVIGATION
+========================= */
+
 function nextPage(number) {
 
-    document.querySelectorAll(".page").forEach(function(page) {
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
 
-        page.classList.remove("active");
+            page.classList.remove("active");
 
-    });
+        });
 
 
     document
@@ -860,25 +1551,128 @@ function nextPage(number) {
 }
 
 
+/* =========================
+   GIFT
+========================= */
 
 function openGift() {
 
-    document
-        .querySelector(".gift")
-        .classList.toggle("open");
+    const gift =
+        document.querySelector(".gift");
+
+    gift.classList.toggle("open");
+
+    confetti();
 
 }
 
 
+/* =========================
+   CAKE
+========================= */
+
+function cakeCelebration() {
+
+    confetti();
+
+}
+
+
+/* =========================
+   NOTEBOOK
+========================= */
+
+function openNotebook() {
+
+    const notebook =
+        document.querySelector(".notebook");
+
+    notebook.classList.toggle("open");
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function confetti() {
+
+    const symbols = [
+        "✦",
+        "✧",
+        "♡",
+        "•",
+        "★"
+    ];
+
+
+    for (let i = 0; i < 45; i++) {
+
+        const piece =
+            document.createElement("div");
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.fontSize =
+            (10 + Math.random() * 14) + "px";
+
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 2) + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() * .5 + "s";
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(function() {
+
+            piece.remove();
+
+        }, 4500);
+
+    }
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
 
 function restart() {
+
+    document
+        .querySelector(".notebook")
+        .classList.remove("open");
+
 
     nextPage(1);
 
 }
 
-</script>
 
+</script>
 
 </body>
 </html>
